@@ -4,7 +4,7 @@
 using Pkg
 pkg"activate .."
 using JSON, Statistics, Plots, Dates, LsqFit, TimeSeries
-data = JSON.parsefile("../data/timeseries.json");
+data = JSON.parsefile("../data/covid_data.json");
 
 # Aggregate statistics
 function unpack_country(country)
@@ -44,7 +44,7 @@ be_fit = fit_country("Belgium", model, [0.5, 0.5])
 @show stderror(be_fit) # stderror(be_fit) = [0.009881708341035871, 0.0018586282749802605]
 
 prc_fit = fit_country("China", model, [0.5, 0.5])
-@show coef(prc_fit) # ends up being y(t) = 30700e^0.017t... so, apparently, an order of magnitude better than Belgium and France? seems dubious
+@show coef(prc_fit) # ends up being y(t) = 30700e^0.017t... bit different than the others...
 @show stderror(prc_fit) # stderror(prc_fit) = [3123.3555378369188, 0.0020020903719526564]
 
 # Logistic modeling
