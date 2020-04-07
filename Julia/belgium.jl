@@ -4,7 +4,7 @@
 using Pkg
 pkg"activate .."
 using JSON, Statistics, Plots, Dates, LsqFit, TimeSeries
-data = JSON.parsefile("../data/timeseries_03_30_20.json");
+data = JSON.parsefile("../data/timeseries.json");
 
 # Aggregate statistics
 function unpack_country(country)
@@ -23,8 +23,8 @@ function plot_country_aggregates(country)
 end
 
 plot_country_aggregates("Belgium")
-plot_country_aggregates("Canada")
-plot_country_aggregates("France") # because this gives us a longer view
+# plot_country_aggregates("Canada")
+# plot_country_aggregates("France") # because this gives us a longer view
 
 # Regression modeling
 function fit_country(country, model, p_guess)
@@ -44,8 +44,8 @@ be_fit = fit_country("Belgium", model, [0.5, 0.5])
 @show stderror(be_fit) # stderror(be_fit) = [0.009881708341035871, 0.0018586282749802605]
 
 prc_fit = fit_country("China", model, [0.5, 0.5])
-@show coef(prc_fit) # ends up being y(t) = 30700e^0.017t... so, apparently, an order of magnitude better than Belgium and France
-@show stderror(prc_fit) # stderror(prc_fit) = [3123.3555378369188, 0.0020020903719526564] (and a much higher standard error too)
+@show coef(prc_fit) # ends up being y(t) = 30700e^0.017t... so, apparently, an order of magnitude better than Belgium and France? seems dubious
+@show stderror(prc_fit) # stderror(prc_fit) = [3123.3555378369188, 0.0020020903719526564]
 
 # Logistic modeling
 # The logistic growth equation is (Carrying Capacity)/(1 + e^(=growth rate*(t - t_peak)))
@@ -61,14 +61,16 @@ be_logistic_fit = curve_fit(model, t, be_conf, [80.])
 @show stderror(be_logistic_fit) # stderror(be_logistic_fit) = [0.03196080987817913]
 
 # Plot regression
-p = 107.08398211493504
-restricted_data = model.(1:69, Ref(p))
+p = coef(be_logistic_fit)[1]
+restricted_data = model.(1:length(be_dates), Ref(p))
 pl = plot(be_dates, restricted_data, lw = 3, label = "Model", title = "Belgium So Far", legend = :topleft)
-plot!(be_dates, be_conf, lw = 3, label = "Belgium So Far", xticks = be_dates[1:10:end])
+plot!(be_dates, be_conf, lw = 3, label = "Data", xticks = be_dates[1:10:end])
 savefig(pl, "~/Desktop/Belgium_restricted.jpeg")
 
 # Belgium Overall
 full_data = model.(1:200, Ref(p))
 dates = collect(range(be_dates[1], step = Day(1), length = 200))
 pl = plot(dates, full_data, lw = 3, label = "Model", legend = :topleft, title = "Belgium Model Full Timescale", xticks = dates[1:50:end])
+peak = dates[1] + Day(floor(p))
+vline!(pl, [peak], label = "$peak", lw = 3)
 savefig(pl, "~/Desktop/Belgium_model.jpeg")
