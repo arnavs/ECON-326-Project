@@ -20,5 +20,27 @@ For (1), we use a simple linear autoregression `x_{t+5} = R_0 x_t + e`, and exam
 
 For (2), we test a hypothesis on the quantity `D_canada - D_US`, where `D_X` is the difference in `R_0` values for the pre- and post-pandemic regimes for country X. 
 
-The data itself is a transformed version of the JHU COVID tracker, frozen April 6th. See the data folder for more info. 
+## Data
 
+The data itself is a transformed version of the JHU COVID tracker, frozen April 6th. 
+
+The source repo is available [here](https://github.coom/pomber/covid19) (commit `c8d69b5`). It's a time-series (JSON format) of relevant information by country and day. For ex:
+
+```
+"Thailand": [
+  {
+    "date": "2020-1-22",
+    "confirmed": 2,
+    "deaths": 0,
+    "recovered": 0
+  },
+  {
+    "date": "2020-1-23",
+    "confirmed": 3,
+    "deaths": 0,
+    "recovered": 0
+  },
+  ...
+```
+
+Data is cumulative, and is updated thrice daily from the "official" JHU tallies [here](https://github.com/CSSEGISandData/COVID-19).
