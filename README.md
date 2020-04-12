@@ -4,7 +4,7 @@ Final project for ECON 326.
 
 We study Canadian and American coronavirus data to test two hypotheses: 
 
-1. The `R_0` for Canada falls within the interval [2.06-2.52].
+1. The `R_0` for Canada falls within the interval [2.06-2.52]. (This number comes from a Zhang et al analysis on the Diamond Princess outbreak.)
 
 2. Canada "responded better" to the pandemic than the US, since the WHO declared a pandemic. (We quantify this by looking at the reduction in `R_0` over the two regimes.)
 
