@@ -1,6 +1,14 @@
 # ECON-326-Project
 
-Final project for ECON 326.
+Final project for ECON 326. My collaborators on this project (alphabetically) were Bryn Griffiths, Raven Kirkwood, and Aleena Sharma. 
+
+
+* [**Main Analysis Notebook**](Julia/Analysis.ipynb)
+
+* [**Exploratory Data Analysis Notebook**](Julia/EDA.ipynb)
+
+
+## Overview
 
 We study Canadian and American coronavirus data to test two hypotheses: 
 
@@ -14,4 +22,3 @@ For (2), we test a hypothesis on the quantity `D_canada - D_US`, where `D_X` is 
 
 The data itself is a transformed version of the JHU COVID tracker, frozen April 6th. See the data folder for more info. 
 
-My collaborators on this project (alphabetically) were Bryn Griffiths, Raven Kirkwood, and Aleena Sharma. 
