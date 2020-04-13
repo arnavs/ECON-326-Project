@@ -24,7 +24,7 @@ For (2), we test a hypothesis on the quantity `D_canada - D_US`, where `D_X` is 
 
 The data itself is a transformed version of the JHU COVID tracker, frozen April 6th. 
 
-The source repo is available [here](https://github.coom/pomber/covid19) (commit `c8d69b5`). It's a time-series (JSON format) of relevant information by country and day. For ex:
+The source repo is available [here](https://github.com/pomber/covid19) (commit `c8d69b5`). It's a time-series (JSON format) of relevant information by country and day. For ex:
 
 ```
 "Thailand": [
