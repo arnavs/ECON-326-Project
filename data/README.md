@@ -1,4 +1,4 @@
-The dataset we used is available [here](https://github.coom/pomber/covid19) (commit `c8d69b5`). It's a time-series (JSON format) of relevant information by country and day. For ex:
+The dataset we used is available [here](https://github.com/pomber/covid19) (commit `c8d69b5`). It's a time-series (JSON format) of relevant information by country and day. For ex:
 
 ```
 "Thailand": [
